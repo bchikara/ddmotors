@@ -1,3 +1,3 @@
-<script src="/motor-analysis-app/public/assets/js/main.js"></script>
+<script src="/motor-analysis-app/public/js/main.js"></script>
 </body>
 </html>

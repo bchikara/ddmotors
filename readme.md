@@ -1,120 +1,90 @@
-# PHP Controller Selector App
+PHP Motor Data Viewer
+A simple PHP application that fetches and displays a summary of motor data from a MySQL database, styled with Tailwind CSS.
 
-A simple PHP + MySQL + TailwindCSS project with two tasks:
+Task 1: Fetches and displays a summary table of average motor prices grouped by drive type.
 
-- **Task 1**: A controller selector form that submits data using PHP and stores it in a MySQL database.
-- **Task 2**: A floating "Tips" button that toggles a hidden info box using JavaScript.
+Task 2: Includes a floating "Tips" button that toggles a hidden info box using JavaScript.
 
----
+🔧 Requirements
+PHP 8+
 
-## 🔧 Requirements
+MySQL
 
-- PHP 8+
-- MySQL
-- TailwindCSS (via CDN)
-- Local server (e.g. Apache via MAMP or XAMPP)
-- macOS or Linux or Windows
+Composer for package management
 
----
+Local server (e.g., Apache via MAMP or XAMPP)
 
-## 📁 Folder Structure
+📁 Folder Structure
+The project uses a structured layout to separate concerns:
 
-controller-selector/
+motor-project/
 │
-├── index.php # Main form + toggle page
-├── db.php # Secure PDO connection logic
-├── .env # DB credentials (not committed)
-├── .env.example # Example env file
-├── save.php # Handles form submission via POST
-├── style.css # Optional extra CSS
-├── README.md # You are here
-└── sql/
-└── init.sql # SQL to create the table
+├── public/
+│   ├── index.php         # Main page that displays the data
+│   └── js/
+│       └── main.js   # JavaScript for the tips toggle
+│
+├── src/
+│   └── db.php            # Secure PDO connection logic
+│
+├── templates/
+│   ├── header.php        # HTML head and opening body tags
+│   └── footer.php        # HTML closing tags and script includes
+│
+├── .env                  # DB credentials (not committed to Git)
+├── .env.example          # Example .env file
+├── composer.json         # PHP dependencies (e.g., phpdotenv)
+└── README.md             # You are here
 
-yaml
-Copy
-Edit
+🛠️ Setup Instructions
+1. Clone the Project
+git clone https://github.com/bchikara/ddmotors.git
+cd ddmotors
 
----
+2. Install Dependencies
+Use Composer to install the required phpdotenv package.
 
-## 🛠️ Setup Instructions
+composer install
 
-### 1. Clone or Download the Project
+3. Create .env File
+Copy the example file and update it with your local database credentials.
 
-```bash
-git clone https://github.com/yourusername/controller-selector.git
-cd controller-selector
-2. Create .env File
-Create a .env file in the root folder:
+cp .env.example .env
 
-env
-Copy
-Edit
+Your .env file should look like this:
+
 DB_HOST=localhost
-DB_NAME=controller_db
+DB_NAME=your_database_name
 DB_USER=root
 DB_PASS=your_password
-You can copy from .env.example:
 
-bash
-Copy
-Edit
-cp .env.example .env
-3. Create the MySQL Table
-Import the SQL schema:
+4. Set Up the Database
+You'll need a table named motorcrossref2 with at least DriveType and Price columns. You can create and populate it with this sample SQL:
 
-sql
-Copy
-Edit
--- File: sql/init.sql
-
-CREATE TABLE controllers (
+CREATE TABLE motorcrossref2 (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    controller_type VARCHAR(100) NOT NULL,
-    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    DriveType VARCHAR(50) NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL
 );
-4. Run the App
-Use MAMP/XAMPP or PHP’s built-in server:
 
-bash
-Copy
-Edit
+INSERT INTO motorcrossref2 (DriveType, Price) VALUES
+('Regen', 250.75),
+('Regen', 300.50),
+('Series', 150.00),
+('Series', 175.25),
+('Regen', 275.00);
+
+5. Run the Application
+Navigate to the public directory and use PHP's built-in web server.
+
+cd public
 php -S localhost:8000
-Visit: http://localhost:8000
 
-✅ Task Details
-✅ Task 1: Form + DB
-Input fields for Name and Controller Type.
-
-On form submission:
-
-Validates inputs.
-
-Inserts data into MySQL DB using PDO.
-
-Shows confirmation on the same page.
-
-✅ Task 2: Tips Toggle Button
-Floating Tips button at bottom-right.
-
-Clicking toggles a styled tips box.
-
-Tips box uses TailwindCSS for clean UI.
-
-JS handles the toggle; PHP loads the page.
-
-🛡️ Security
-Uses PDO with error handling.
-
-Environment variables used for DB credentials (via .env).
-
-🧪 Testing
-Try submitting form with valid and invalid data.
-
-Click Tips toggle to test JavaScript interaction.
+Now, visit http://localhost:8000 in your browser to see the application.
 
 👨‍💻 Author
 Bhupesh Chikara
-📧 bhupeshchikara@gmail.com
-🌐 builtbychikara.dev
+
+Email: bhupeshchikara@gmail.com
+
+Website: builtbychikara.dev
