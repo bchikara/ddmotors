@@ -1,66 +1,88 @@
-PHP Motor Data Viewer
-A simple PHP application that fetches and displays a summary of motor data from a MySQL database, styled with Tailwind CSS.
+# ⚙️ PHP Motor Data Viewer
 
-Task 1: Fetches and displays a summary table of average motor prices grouped by drive type.
+A simple, modern PHP application that **fetches and displays average motor prices** grouped by drive type, styled with **Tailwind CSS**.
 
-Task 2: Includes a floating "Tips" button that toggles a hidden info box using JavaScript.
+---
 
-🔧 Requirements
-PHP 8+
+## 📌 Features
 
-MySQL
+- ✅ **Task 1**: Fetches and displays a summary table of **average motor prices grouped by drive type**.
+- ✅ **Task 2**: Includes a floating **"Tips" button** that toggles a hidden info box using JavaScript.
 
-Composer for package management
+---
 
-Local server (e.g., Apache via MAMP or XAMPP)
+## 🔧 Requirements
 
-📁 Folder Structure
-The project uses a structured layout to separate concerns:
+- PHP 8+
+- MySQL
+- Composer
+- Local server (e.g., Apache via MAMP/XAMPP)
 
+---
+
+## 📁 Folder Structure
+
+```
 motor-project/
 │
 ├── public/
-│   ├── index.php         # Main page that displays the data
-│   └── js/
-│       └── main.js   # JavaScript for the tips toggle
+│   ├── index.php         # Main entry point
+│   └── assets/
+│       └── js/
+│           └── main.js   # JS for tips toggle
 │
 ├── src/
-│   └── db.php            # Secure PDO connection logic
+│   └── db.php            # Secure PDO DB connection
 │
 ├── templates/
-│   ├── header.php        # HTML head and opening body tags
-│   └── footer.php        # HTML closing tags and script includes
+│   ├── header.php        # Head + body start
+│   └── footer.php        # Scripts + body end
 │
-├── .env                  # DB credentials (not committed to Git)
-├── .env.example          # Example .env file
-├── composer.json         # PHP dependencies (e.g., phpdotenv)
-└── README.md             # You are here
+├── .env                  # Environment variables (ignored by Git)
+├── .env.example          # Sample env file
+├── composer.json         # PHP dependencies
+└── README.md             # This file
+```
 
-🛠️ Setup Instructions
-1. Clone the Project
+---
+
+## 🚀 Setup Instructions
+
+### 1️⃣ Clone the Repository
+
+```bash
 git clone https://github.com/bchikara/ddmotors.git
 cd ddmotors
+```
 
-2. Install Dependencies
-Use Composer to install the required phpdotenv package.
+### 2️⃣ Install PHP Dependencies
 
+```bash
 composer install
+```
 
-3. Create .env File
-Copy the example file and update it with your local database credentials.
+### 3️⃣ Configure Environment
 
+Create your own `.env` file:
+
+```bash
 cp .env.example .env
+```
 
-Your .env file should look like this:
+Update it with your DB credentials:
 
+```
 DB_HOST=localhost
 DB_NAME=your_database_name
 DB_USER=root
 DB_PASS=your_password
+```
 
-4. Set Up the Database
-You'll need a table named motorcrossref2 with at least DriveType and Price columns. You can create and populate it with this sample SQL:
+### 4️⃣ Create the Database
 
+Run the following SQL to set up the table:
+
+```sql
 CREATE TABLE motorcrossref2 (
     id INT AUTO_INCREMENT PRIMARY KEY,
     DriveType VARCHAR(50) NOT NULL,
@@ -73,18 +95,33 @@ INSERT INTO motorcrossref2 (DriveType, Price) VALUES
 ('Series', 150.00),
 ('Series', 175.25),
 ('Regen', 275.00);
+```
 
-5. Run the Application
-Navigate to the public directory and use PHP's built-in web server.
+### 5️⃣ Start the App
 
+```bash
 cd public
 php -S localhost:8000
+```
 
-Now, visit http://localhost:8000 in your browser to see the application.
+Then open 👉 [http://localhost:8000](http://localhost:8000)
 
-👨‍💻 Author
-Bhupesh Chikara
+---
 
-Email: bhupeshchikara@gmail.com
+## ✨ Preview
 
-Website: builtbychikara.dev
+> A clean interface with summarized motor price data grouped by drive type and a floating tips section.
+
+---
+
+## 👨‍💻 Author
+
+**Bhupesh Chikara**  
+📧 bhupeshchikara@gmail.com  
+🌐 [builtbychikara.dev](https://builtbychikara.dev)
+
+---
+
+## 📝 License
+
+This project is open-source and available under the [MIT License](LICENSE).
